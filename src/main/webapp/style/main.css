@@ -1,0 +1,16 @@
+table, th, td {
+    border: 1px solid black;
+}
+
+button:active {
+    color: #ff0000;
+}
+
+.active_page {
+    color: #ec075f;
+}
+
+.button_page {
+    border: 1px solid black;
+    font-size: 40px;
+}
