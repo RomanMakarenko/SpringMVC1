@@ -7,6 +7,7 @@ import romm.domain.Task;
 import romm.service.TaskService;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 import static java.util.Objects.isNull;
 
@@ -26,6 +27,12 @@ public class TaskController {
     ) {
         List<Task> tasks = taskService.getAll((page - 1) * limit, limit);
         model.addAttribute("tasks", tasks);
+        model.addAttribute("currentPage", page);
+        int totalPages = (int) Math.ceil((double) taskService.getAllCount() / limit);
+        if (totalPages > 1) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages).boxed().toList();
+            model.addAttribute("page_numbers", pageNumbers);
+        }
         return "tasks";
     }
 
